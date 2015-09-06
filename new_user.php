@@ -2,7 +2,7 @@
 	    $username = "root";
         $password = "team5";
         $hostname = "localhost";
-        $database = "mysql";
+        $database = "IFB299";
         $table = "logins";
 
         $dbhandle = mysql_connect($hostname, $username, $password) or die("Could not connect to database");

@@ -1,0 +1,52 @@
+﻿h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 30pt;
+	font-weight: bold;
+}
+h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20pt;
+	font-weight: bold;
+}
+p {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.error {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20pt;
+	font-weight: bold;
+	color: #FF0000;
+}
+.successful {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20pt;
+	font-weight: bold;
+	color: #008000;
+}
+.unsuccessful {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20pt;
+	font-weight:bold;
+	color:red;
+}
+.searchHeadings {
+	font-weight: bold;
+	font-style: italic;
+}
+.information{
+	font-size: small;
+	font-style:italic;
+}
+a:link {
+	color: #000000;
+}
+a:visited {
+	color: #000000;
+}
+a:hover {
+	color: #0000FF;
+}
+body {
+	background-color: #C0C0C0;
+}
