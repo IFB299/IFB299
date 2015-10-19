@@ -16,12 +16,12 @@
 
 
 
-	echo 	'<form method="post" action="delete_my_roster.php">
+	echo 	'<form method="post" action="changedelete_my_roster.php">
             <table border="1" style="width:100%;">
             <tr>
-               	<td style="text-align: center; width:140px">Date</td>
-               	<td>Volunteer</td>
-         	</tr>';
+                <td style="text-align: center; width:300px">Date</td>
+                <td style="text-align: center; width:400px">My Request to Manager</td>
+            </tr>';
 
     $conn = new mysqli($hostname, $username, $password, $database);
 	if ($conn->connect_error) {
@@ -48,10 +48,53 @@
     		$volunteer='Name: '.$row["firstname"].' '.$row["lastname"].' ('.$row["username"].') <br/>Email: '.$row["email"];
     		$id=$row["id"];
 
-			echo 	'<tr>
-                <td style="text-align: center; width:140px">'.$row["dateofduty"].'</td>
-                <td>'.$volunteer.'</td>
-            	</tr>';
+            $today = date('Y-m-d');
+            $dateofduty = date("Y-m-d",strtotime($row["dateofduty"]));
+
+            if($dateofduty >= $today) {
+    			echo 	'<tr>
+                    <td style="text-align: center; width:300px">'.$row["dateofduty"].'</td>
+                    <td style="text-align: center; width:400px">
+                        <table style="width:400px">
+                            <tr>
+                                <td style="width: 10px">
+                                    
+                                <td>
+                                <td>
+                                    <input name="hidden_'.$i.'" type="hidden" value="'.$id.'" />
+                                    New Date:</td>
+                                <td>
+                                    <input name="cday_'.$i.'" type="date" style="width: 150px; font-size: 10pt" min="'.$today.'" value="'.$today.'" /></td>
+                                <td>
+                                    <span onclick="return confirm(\'Are you sure to send change request? Request will be approved by the manager!\')">
+                                    <input name="change_'.$i.'" type="submit" value="Change Req" style="font-size: 10pt" />
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"><hr />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <center>
+                                    <span onclick="return confirm(\'Are you sure to send delete request? Request will be approved by the manager!\')">
+                                    <input name="delete_'.$i.'" type="submit" value="Delete Request" style="font-size: 10pt"/>
+                                    <span>
+                                    </center>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>';
+            } else {
+                echo    '<tr>
+                    <td style="text-align: center; width:300px">'.$row["dateofduty"].'</td>
+                    <td style="text-align: center; width:400px">
+                        You cannot alter roster entry that has already been done!
+                    </td>
+                </tr>';
+            }
             $i++;
 		}
     }

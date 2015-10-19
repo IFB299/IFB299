@@ -32,6 +32,15 @@
 		$_SESSION['rvvolunteer'] = $_POST["rvvolunteer"];
 	}
 
+	if($_POST["requestvol"] == "")
+	{
+		$_SESSION['requestvol'] = "0";
+	}
+	else
+	{
+		$_SESSION['requestvol'] = $_POST["requestvol"];
+	}
+
 	header("Location: volunteer_roster.php");
 	die();
 	

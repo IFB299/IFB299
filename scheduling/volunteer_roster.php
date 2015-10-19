@@ -76,7 +76,7 @@ require("../templates/header_sub.php");
                     ?>
 					</select>
                 </td>
-            </tr>
+            </tr>            
             <tr style="vertical-align:top; height:40px">
                 <td>&nbsp;</td>
                 <td>
@@ -149,6 +149,7 @@ require("../templates/header_sub.php");
                     				if($rvday=="")
                     				{
                     					$rvday = date('Y-m-d');
+                                        $_SESSION["rvday"] = $rvday;
                     					echo '<input type="date" name="rvday" style="width: 200px" value="'.$rvday.'" />';
                     				}
                     				else
@@ -167,9 +168,10 @@ require("../templates/header_sub.php");
                                 	{
                                 		$rvdayfor = $_SESSION["rvdayfor"];
                                 	}                   					
-                    				if($rvdayfor==0)
+                    				if($rvdayfor==0 || $rvdayfor=="")
                     				{
                     					$rvdayfor = 7;
+                                        $_SESSION["rvdayfor"] = $rvdayfor;
                     					echo '<input type="number" name="rvdayfor" style="width: 200px" value="'.$rvdayfor.'" min="1" max="365" />';
                     				}
                     				else
@@ -193,6 +195,10 @@ require("../templates/header_sub.php");
                                 	{
                                 		$rvvolunteer = $_SESSION["rvvolunteer"];
                                 	}
+                                    if($rvvolunteer==0 || $rvvolunteer=="")
+                                    {
+                                        $_SESSION["rvvolunteer"] = 0;
+                                    }
 
                     				$conn = new mysqli($hostname, $username, $password, $database);
 									if ($conn->connect_error) {
@@ -222,8 +228,45 @@ require("../templates/header_sub.php");
                     			</td>
                             </tr>
                             <tr>
+                            <td style="text-align: right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Requested :</td>
+                            <td>
+                                <select id="requestvol" name="requestvol" style="width: 200px; height: 20px;">
+                                <?php
+                                    $requestvol=0;
+                                    if(isset($_SESSION["requestvol"]))
+                                    {
+                                        $requestvol = $_SESSION["requestvol"];
+                                    }
+                                    if($requestvol==0 || $requestvol=="")
+                                    {
+                                        $_SESSION["requestvol"] = 0;
+                                    }
+
+                                    if($requestvol==0){
+                                        echo '<option value=\'0\' selected="selected">All</option>
+                                        <option value=\'1\'>No</option>
+                                        <option value=\'2\'>Yes</option>';
+                                    }
+                                    else if($requestvol==1){                                        
+                                        echo '<option value=\'0\'>All</option>
+                                        <option value=\'1\' selected="selected">No</option>
+                                        <option value=\'2\'>Yes</option>';
+                                    }
+                                    else {                                                                            
+                                        echo '<option value=\'0\'>All</option>
+                                        <option value=\'1\'>No</option>
+                                        <option value=\'2\' selected="selected">Yes</option>';
+                                    }
+
+                                ?>
+                                <select id="requestvol" name="requestvol" style="width: 200px; height: 20px;">
+                                    
+                                </select>
+                            </td>
+                            </tr>
+                            <tr>
                                 <td colspan="2" style="text-align: center">                    
-                                	<input type="submit" value="Search" name="submit" style="width:70px; height:30px; font-size:10pt"/></td>
+                                	<input type="submit" value="Search" name="submit" style="width:70px; height:30px; font-size:10pt; margin-top: 10px"/></td>
                             </tr>
                             <tr>
                                 <td colspan="2" style="text-align: center; height:5px"></td>

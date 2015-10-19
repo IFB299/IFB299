@@ -18,6 +18,26 @@ require("../templates/header_sub.php");
                 <td style="height:30px; text-align:center" ></td>
                     
                   </tr>
+            
+            <?php 
+            $success=0;
+            if(isset($_GET["success"]))
+            {
+                $success=$_GET["success"];
+            }
+            if($success==1) {
+                echo '<tr>
+                <td style="background-color:teal; color:white; font-weight:bold; font-size: 15pt; height: 30px">
+                    &nbsp;Your Request Sent Successfully
+                </td>
+                </tr>';
+            }            
+            ?>
+            <tr>
+                <td style="font-weight:bold; font-size: 15pt; height: 30px">
+                    &nbsp;&nbsp;
+                </td>
+            </tr>
             <tr>
                 <td style="border-bottom:solid 1px black">
                     <h2>View Roster</h2>
